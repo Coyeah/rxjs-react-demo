@@ -1,8 +1,9 @@
 import React from 'react';
 import { Input } from 'antd';
 import { useFetch } from './useFetch';
+import UserCard from '../UserCard';
 
-const User = (props) => {
+const Index = (props) => {
   const [value, onChange] = useFetch(
     (e) => {
       if (e && e.target && e.target.value) {
@@ -17,15 +18,10 @@ const User = (props) => {
   const data = value;
   return (
     <div>
-      {data && (
-        <>
-          <p><b>github name</b>: {data.name}</p>
-          <p><b>github location</b>: {data.html_url}</p>
-        </>
-      )}
-      <Input onChange={onChange} placeholder="github username" />
+      <Input onChange={onChange} placeholder="github username" style={{marginBottom: 18}} />
+      {data && <UserCard {...data} />}
     </div>
   )
 }
 
-export default User;
+export default Index;
