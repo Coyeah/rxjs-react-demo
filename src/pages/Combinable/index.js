@@ -6,7 +6,6 @@ import Error from '../../components/Error';
 
 const Combinable = (props) => {
   const [{ data, status: { loading, code } }, action] = useFetch();
-  console.log(data, 'data', code);
   const component = () => {
     if (code === 0 || !data) return null;
     if (loading) return (<h3>Loading...</h3>);
