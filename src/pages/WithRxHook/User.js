@@ -3,8 +3,8 @@ import { useObservable } from 'rxjs-hooks';
 import { of, merge } from 'rxjs';
 import { catchError, debounceTime, filter, map, switchMap, pluck, tap } from 'rxjs/operators';
 import { ajax } from 'rxjs/ajax';
-import UserCard from '../UserCard';
-import Error from '../Error';
+import UserCard from '../../components/UserCard';
+import Error from '../../components/Error';
 
 const formatUrl = user => `https://api.github.com/users/${user}`;
 

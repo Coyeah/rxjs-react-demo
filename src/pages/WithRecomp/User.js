@@ -10,8 +10,8 @@ import {
   pluck,
   switchMap
 } from 'rxjs/operators';
-import UserCard from '../UserCard';
-import Error from '../Error';
+import UserCard from '../../components/UserCard';
+import Error from '../../components/Error';
 
 const formatUrl = user => `https://api.github.com/users/${user}`;
 

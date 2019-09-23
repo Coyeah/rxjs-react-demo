@@ -6,6 +6,7 @@ import 'whatwg-fetch';
 
 export const useFetch = (translation, options = {}) => {
   const [value, setValue] = useState(undefined);
+  const [loading, setLoading] = useState(false);
   const [stream] = useState(new BehaviorSubject);
   const { debounce = 0, throttle = 0 } = options;
   useEffect(() => {
@@ -21,9 +22,11 @@ export const useFetch = (translation, options = {}) => {
       throttleTime(throttle),
     ).subscribe(async (value) => {
       if (!!value) {
+        setLoading(true);
         const data = await fetch(`https://api.github.com/users/${value}`)
           .then(res => res.json());
         setValue(data);
+        setLoading(false);
       }
     });
   }, []);
@@ -31,5 +34,8 @@ export const useFetch = (translation, options = {}) => {
   const handle = useCallback((value) => {
     stream.next(value)
   }, [stream]);
-  return [value, handle];
+  return [{
+    data: value,
+    loading,
+  }, handle];
 }
